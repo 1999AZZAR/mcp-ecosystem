@@ -12,7 +12,7 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 | --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
 | [**Chaining MCP**](https://github.com/1999AZZAR/chaining-mcp-server)                 | Intelligent tool orchestration | Route optimization, sequential thinking, workflow orchestration |
 | [**Filesystem MCP**](https://github.com/1999AZZAR/filesystem-mcp-server)             | Advanced file operations       | File manipulation, directory operations, search capabilities    |
-| [**Google Search MCP**](https://github.com/1999AZZAR/google-search-mcp-server)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
+| [**Google Search MCP**](https://github.com/1999AZZAR/Google-Search-MCP)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
 | [**Project Guardian MCP**](https://github.com/1999AZZAR/project-guardian-mcp-server) | Project memory management      | Knowledge graphs, task tracking, database operations            |
 | [**Terminal MCP**](https://github.com/1999AZZAR/terminal-mcp-server)                 | System command execution       | Remote execution, session management, cross-platform support    |
 | [**Wikipedia MCP**](https://github.com/1999AZZAR/wikipedia-mcp-server)               | Knowledge base access          | Article search, content extraction, language support            |
@@ -161,7 +161,7 @@ Advanced file system operations server providing:
 
 ### Google Search MCP Server
 
-**Repository:** [google-search-mcp-server](https://github.com/1999AZZAR/google-search-mcp-server)
+**Repository:** [Google-Search-MCP](https://github.com/1999AZZAR/Google-Search-MCP)
 
 Web research and content analysis server offering:
 

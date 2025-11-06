@@ -114,7 +114,7 @@ main() {
     declare -a servers=(
         "chaining-mcp-server:https://github.com/1999AZZAR/chaining-mcp-server.git"
         "filesystem-mcp-server:https://github.com/1999AZZAR/filesystem-mcp-server.git"
-        "google-search-mcp-server:https://github.com/1999AZZAR/google-search-mcp-server.git"
+        "google-search-mcp-server:https://github.com/1999AZZAR/Google-Search-MCP.git"
         "Project-Guardian-mcp-server:https://github.com/1999AZZAR/project-guardian-mcp-server.git"
         "terminal-mcp-server:https://github.com/1999AZZAR/terminal-mcp-server.git"
         "wikipedia-mcp-server:https://github.com/1999AZZAR/wikipedia-mcp-server.git"
