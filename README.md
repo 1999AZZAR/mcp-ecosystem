@@ -30,8 +30,8 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 1. **Clone the AZZAR MCP Server Suite repository:**
 
    ```bash
-   git clone https://github.com/1999AZZAR/azzar-mcp-suite.git
-   cd azzar-mcp-suite
+   git clone https://github.com/1999AZZAR/mcp-ecosystem.git
+   cd mcp-ecosystem
    ```
 2. **Run the setup script:**
 
@@ -213,7 +213,7 @@ Knowledge base access server providing:
 ### Repository Structure
 
 ```
-azzar-mcp-suite/
+mcp-ecosystem/
 ├── README.md                    # This file
 ├── setup.sh                     # Automated setup script
 ├── update.sh                    # Update all servers script
