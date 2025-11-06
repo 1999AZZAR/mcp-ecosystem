@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# MCP Ecosystem Setup Script
+# AZZAR MCP Server Suite Setup Script
 # This script clones all MCP server repositories and sets them up
 
 set -e  # Exit on any error
@@ -87,7 +87,7 @@ setup_server() {
 
 # Main setup function
 main() {
-    print_status "Starting MCP Ecosystem setup..."
+    print_status "Starting AZZAR MCP Server Suite setup..."
 
     # Check if git is available
     if ! command -v git &> /dev/null; then

@@ -1,6 +1,6 @@
-# Contributing to MCP Ecosystem
+# Contributing to AZZAR MCP Server Suite
 
-Thank you for your interest in contributing to the MCP Ecosystem! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to the AZZAR MCP Server Suite! This document provides guidelines and information for contributors.
 
 ## Ways to Contribute
 
@@ -158,4 +158,4 @@ Contributors are recognized through:
 - Mention in release notes for significant contributions
 - Credit in documentation for major features
 
-Thank you for contributing to the MCP Ecosystem! Your efforts help make AI assistants more capable and useful.
+Thank you for contributing to the AZZAR MCP Server Suite! Your efforts help make AI assistants more capable and useful.

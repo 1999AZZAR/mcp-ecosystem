@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# MCP Ecosystem Update Script
+# AZZAR MCP Server Suite Update Script
 # This script updates all MCP server repositories to their latest versions
 
 set -e  # Exit on any error
@@ -82,7 +82,7 @@ update_server() {
 
 # Main update function
 main() {
-    print_status "Starting MCP Ecosystem update..."
+    print_status "Starting AZZAR MCP Server Suite update..."
 
     # Check if git is available
     if ! command -v git &> /dev/null; then

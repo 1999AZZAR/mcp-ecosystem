@@ -1,6 +1,6 @@
 # Troubleshooting Guide
 
-This guide helps you resolve common issues when setting up and using the MCP Ecosystem.
+This guide helps you resolve common issues when setting up and using the AZZAR MCP Server Suite.
 
 ## Setup Issues
 
