@@ -1,10 +1,10 @@
 # AZZAR MCP Server Suite
 
-A comprehensive collection of Model Context Protocol (MCP) servers developed by Azzar, designed to enhance AI assistant capabilities across development, research, project management, and system operations.
+A collection of Model Context Protocol (MCP) servers developed by Azzar, designed to enhance AI assistant capabilities across development, research, project management, and system operations.
 
 ## Overview
 
-The AZZAR MCP Server Suite provides a collection of specialized MCP servers that work together to create a powerful AI assistant toolkit. Each server focuses on specific domains while maintaining interoperability through the MCP protocol.
+The AZZAR MCP Server Suite provides a collection of specialized MCP servers that work together to create an effective AI assistant toolkit. Each server focuses on specific domains while maintaining interoperability through the MCP protocol.
 
 ### Core Servers
 
@@ -153,7 +153,7 @@ Intelligent tool orchestration and workflow management server featuring:
 
 Advanced file system operations server providing:
 
-- Comprehensive file and directory operations
+- File and directory operations
 - Content reading with encoding support
 - File search and filtering capabilities
 - Archive creation and extraction
@@ -182,7 +182,7 @@ Project memory and knowledge management server featuring:
 - Task tracking and progress management
 - SQLite database operations
 - Data import/export capabilities
-- Comprehensive project management workflows
+- Project management workflows
 
 ### Terminal MCP Server
 
@@ -279,7 +279,7 @@ To propose a new MCP server for the ecosystem:
 
 1. **Create Repository:** Develop the server in its own repository
 2. **Follow Standards:** Implement MCP protocol correctly with proper error handling
-3. **Add Documentation:** Provide comprehensive README and usage examples
+3. **Add Documentation:** Provide README and usage examples
 4. **Submit Proposal:** Open an issue in this repository with server details
 
 ## License
@@ -303,5 +303,3 @@ To update all servers to their latest versions:
 This will pull the latest changes from all server repositories and rebuild them.
 
 ---
-
-**Built with ❤️ by Azzar for the AI assistant community**

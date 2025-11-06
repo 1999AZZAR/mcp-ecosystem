@@ -140,7 +140,7 @@ main() {
 
     if [ "$success_count" -eq "$total_count" ]; then
         echo
-        print_success "🎉 All MCP servers have been successfully set up!"
+        print_success "All MCP servers have been successfully set up!"
         echo
         print_status "Next steps:"
         echo "1. Configure your MCP client (Cursor IDE or Claude Desktop)"

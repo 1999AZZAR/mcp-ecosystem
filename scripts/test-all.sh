@@ -99,7 +99,7 @@ main() {
     print_success "Tests passed for $success_count out of $total_count servers"
 
     if [ "$success_count" -eq "$total_count" ]; then
-        print_success "🎉 All MCP server tests have passed!"
+        print_success "All MCP server tests have passed!"
     else
         print_warning "Some server tests failed. Please check the errors above."
         exit 1

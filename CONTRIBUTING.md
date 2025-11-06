@@ -53,7 +53,7 @@ Thank you for your interest in contributing to the AZZAR MCP Server Suite! This 
 2. **Create the repository** following the established patterns:
    - Use TypeScript
    - Follow MCP protocol specifications
-   - Include comprehensive documentation
+   - Include documentation
    - Provide test coverage
    - Use established project structure
 

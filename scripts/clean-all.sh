@@ -169,7 +169,7 @@ main() {
     print_success "Processed $cleaned_count out of $total_count servers"
 
     if [ "$cleaned_count" -eq "$total_count" ]; then
-        print_success "🎉 All MCP servers have been cleaned!"
+        print_success "All MCP servers have been cleaned!"
     fi
 }
 

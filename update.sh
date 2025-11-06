@@ -117,7 +117,7 @@ main() {
     print_success "Successfully updated $success_count out of $total_count servers"
 
     if [ "$success_count" -eq "$total_count" ]; then
-        print_success "🎉 All MCP servers have been successfully updated!"
+        print_success "All MCP servers have been successfully updated!"
     else
         print_warning "Some servers failed to update. Please check the errors above."
         exit 1

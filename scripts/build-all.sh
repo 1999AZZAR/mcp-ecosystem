@@ -92,7 +92,7 @@ main() {
     print_success "Successfully built $success_count out of $total_count servers"
 
     if [ "$success_count" -eq "$total_count" ]; then
-        print_success "🎉 All MCP servers have been successfully built!"
+        print_success "All MCP servers have been successfully built!"
     else
         print_warning "Some servers failed to build. Please check the errors above."
         exit 1

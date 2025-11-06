@@ -2,7 +2,7 @@
 
 ## Overview
 
-The AZZAR MCP Server Suite is a collection of specialized Model Context Protocol (MCP) servers designed to work together to provide comprehensive AI assistant capabilities. The architecture follows a modular, distributed approach where each server focuses on specific domains while maintaining interoperability through the MCP protocol.
+The AZZAR MCP Server Suite is a collection of specialized Model Context Protocol (MCP) servers designed to work together to provide AI assistant capabilities. The architecture follows a modular, distributed approach where each server focuses on specific domains while maintaining interoperability through the MCP protocol.
 
 ## Core Principles
 
