@@ -12,8 +12,8 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 | --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
 | [**Chaining MCP**](https://github.com/1999AZZAR/chaining-mcp-server)                 | Intelligent tool orchestration | Route optimization, sequential thinking, workflow orchestration |
 | [**Filesystem MCP**](https://github.com/1999AZZAR/filesystem-mcp-server)             | Advanced file operations       | File manipulation, directory operations, search capabilities    |
-| [**Google Search MCP**](https://github.com/1999AZZAR/Google-Search-MCP)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
-| [**Project Guardian MCP**](https://github.com/1999AZZAR/project-guardian-mcp-server) | Project memory management      | Knowledge graphs, task tracking, database operations            |
+| [**Google Search MCP**](https://github.com/1999AZZAR/google-search-mcp-server)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
+| [**Project Guardian MCP**](https://github.com/1999AZZAR/Project-Guardian-mcp-server) | Project memory management      | Knowledge graphs, task tracking, database operations            |
 | [**Terminal MCP**](https://github.com/1999AZZAR/terminal-mcp-server)                 | System command execution       | Remote execution, session management, cross-platform support    |
 | [**Wikipedia MCP**](https://github.com/1999AZZAR/wikipedia-mcp-server)               | Knowledge base access          | Article search, content extraction, language support            |
 
@@ -44,6 +44,10 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 
    Choose your preferred MCP client and follow the configuration instructions below.
 
+   **Note:** Replace `/absolute/path/to/mcp-ecosystem` with the actual absolute path to your mcp-ecosystem directory.
+
+   **Important:** The chaining MCP server requires a GitHub Personal Access Token for awesome-copilot integration. Get a token from https://github.com/settings/tokens and replace `your-github-token-here` with your actual token.
+
 ### MCP Client Configuration
 
 #### For Cursor IDE
@@ -55,35 +59,37 @@ Add the following to `~/.cursor/mcp.json`:
   "mcpServers": {
     "chaining": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/chaining-mcp-server/dist/index.js"],
+      "args": ["/absolute/path/to/mcp-ecosystem/chaining-mcp-server/dist/index.js"],
       "env": {
         "SEQUENTIAL_THINKING_AVAILABLE": "true",
-        "AWESOME_COPILOT_ENABLED": "true"
+        "AWESOME_COPILOT_ENABLED": "true",
+        "RELIABILITY_MONITORING_ENABLED": "true",
+        "GITHUB_TOKEN": "your-github-token-here"
       }
     },
     "filesystem": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/filesystem-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/filesystem-mcp-server/dist/index.js"]
     },
     "google-search": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/google-search-mcp-server/dist/index.js"],
+      "args": ["/absolute/path/to/mcp-ecosystem/google-search-mcp-server/dist/index.js"],
       "env": {
-        "GOOGLE_API_KEY": "your-api-key",
-        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id"
+        "GOOGLE_API_KEY": "your-google-api-key-here",
+        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id-here"
       }
     },
     "project-guardian": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/Project-Guardian-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/Project-Guardian-mcp-server/dist/index.js"]
     },
     "terminal": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/terminal-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/terminal-mcp-server/dist/index.js"]
     },
     "wikipedia": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/wikipedia-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/wikipedia-mcp-server/dist/index.js"]
     }
   }
 }
@@ -98,35 +104,36 @@ Add the following to your `claude_desktop_config.json`:
   "mcpServers": {
     "chaining": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/chaining-mcp-server/dist/index.js"],
+      "args": ["/absolute/path/to/mcp-ecosystem/chaining-mcp-server/dist/index.js"],
       "env": {
         "SEQUENTIAL_THINKING_AVAILABLE": "true",
-        "AWESOME_COPILOT_ENABLED": "true"
+        "AWESOME_COPILOT_ENABLED": "true",
+        "GITHUB_TOKEN": "your-github-token-here"
       }
     },
     "filesystem": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/filesystem-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/filesystem-mcp-server/dist/index.js"]
     },
     "google-search": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/google-search-mcp-server/dist/index.js"],
+      "args": ["/absolute/path/to/mcp-ecosystem/google-search-mcp-server/dist/index.js"],
       "env": {
-        "GOOGLE_API_KEY": "your-api-key",
-        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id"
+        "GOOGLE_API_KEY": "your-google-api-key-here",
+        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id-here"
       }
     },
     "project-guardian": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/Project-Guardian-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/Project-Guardian-mcp-server/dist/index.js"]
     },
     "terminal": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/terminal-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/terminal-mcp-server/dist/index.js"]
     },
     "wikipedia": {
       "command": "node",
-      "args": ["/path/to/mcp-ecosystem/wikipedia-mcp-server/dist/index.js"]
+      "args": ["/absolute/path/to/mcp-ecosystem/wikipedia-mcp-server/dist/index.js"]
     }
   }
 }
@@ -161,7 +168,7 @@ Advanced file system operations server providing:
 
 ### Google Search MCP Server
 
-**Repository:** [Google-Search-MCP](https://github.com/1999AZZAR/Google-Search-MCP)
+**Repository:** [google-search-mcp-server](https://github.com/1999AZZAR/google-search-mcp-server)
 
 Web research and content analysis server offering:
 
@@ -174,7 +181,7 @@ Web research and content analysis server offering:
 
 ### Project Guardian MCP Server
 
-**Repository:** [project-guardian-mcp-server](https://github.com/1999AZZAR/project-guardian-mcp-server)
+**Repository:** [Project-Guardian-mcp-server](https://github.com/1999AZZAR/Project-Guardian-mcp-server)
 
 Project memory and knowledge management server featuring:
 
@@ -223,7 +230,7 @@ mcp-ecosystem/
 │   └── docker-compose.yml       # Docker deployment example
 ├── docs/                        # Additional documentation
 │   ├── architecture.md          # System architecture overview
-│   ├── integration.md           # Integration guides
+│   ├── integration.md           # Comprehensive integration guides
 │   └── troubleshooting.md       # Common issues and solutions
 └── scripts/                     # Utility scripts
     ├── build-all.sh            # Build all servers

@@ -1,0 +1,96 @@
+version: '3.8'
+
+# Environment variables should be defined in ../.env file
+# Copy .env.example to .env and fill in your values
+
+services:
+  # Chaining MCP Server - Orchestrates all other servers
+  chaining-mcp:
+    build:
+      context: ../chaining-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - SEQUENTIAL_THINKING_AVAILABLE=true
+      - AWESOME_COPILOT_ENABLED=true
+      - RELIABILITY_MONITORING_ENABLED=true
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - filesystem-mcp
+      - google-search-mcp
+      - project-guardian-mcp
+      - terminal-mcp
+      - wikipedia-mcp
+    networks:
+      - mcp-network
+
+  # Filesystem MCP Server - File operations
+  filesystem-mcp:
+    build:
+      context: ../filesystem-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./workspace:/workspace
+    networks:
+      - mcp-network
+
+  # Google Search MCP Server - Web research
+  google-search-mcp:
+    build:
+      context: ../google-search-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_SEARCH_ENGINE_ID=${GOOGLE_SEARCH_ENGINE_ID}
+    networks:
+      - mcp-network
+
+  # Project Guardian MCP Server - Knowledge management
+  project-guardian-mcp:
+    build:
+      context: ../Project-Guardian-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./data:/app/data
+    networks:
+      - mcp-network
+
+  # Terminal MCP Server - System commands
+  terminal-mcp:
+    build:
+      context: ../terminal-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3005"
+    privileged: true
+    networks:
+      - mcp-network
+
+  # Wikipedia MCP Server - Knowledge base
+  wikipedia-mcp:
+    build:
+      context: ../wikipedia-mcp-server
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3006"
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
+
+volumes:
+  workspace:
+    driver: local
+  data:
+    driver: local

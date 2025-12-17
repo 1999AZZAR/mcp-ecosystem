@@ -6,7 +6,7 @@
       "env": {
         "SEQUENTIAL_THINKING_AVAILABLE": "true",
         "AWESOME_COPILOT_ENABLED": "true",
-        "RELIABILITY_MONITORING_ENABLED": "true"
+        "GITHUB_TOKEN": "your-github-token-here"
       }
     },
     "filesystem": {
