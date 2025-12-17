@@ -2,6 +2,32 @@
 
 Thank you for your interest in contributing to the AZZAR MCP Server Suite! This document provides guidelines and information for contributors.
 
+## Table of Contents
+
+- [Ways to Contribute](#ways-to-contribute)
+  - [1. Code Contributions](#1-code-contributions)
+  - [2. Documentation](#2-documentation)
+  - [3. Testing](#3-testing)
+- [Development Workflow](#development-workflow)
+  - [For Existing Servers](#for-existing-servers)
+  - [For New Servers](#for-new-servers)
+- [Coding Standards](#coding-standards)
+  - [General Guidelines](#general-guidelines)
+  - [Code Style](#code-style)
+  - [Commit Messages](#commit-messages)
+- [Testing](#testing)
+  - [Unit Tests](#unit-tests)
+  - [Integration Tests](#integration-tests)
+  - [Manual Testing](#manual-testing)
+- [Documentation](#documentation)
+  - [Code Documentation](#code-documentation)
+  - [README Updates](#readme-updates)
+- [Pull Request Process](#pull-request-process)
+- [Review Process](#review-process)
+- [Community Guidelines](#community-guidelines)
+- [Getting Help](#getting-help)
+- [Recognition](#recognition)
+
 ## Ways to Contribute
 
 ### 1. Code Contributions
