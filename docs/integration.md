@@ -1,5 +1,47 @@
 # AZZAR MCP Server Suite Integration Guide
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Client Integration](#client-integration)
+  - [Cursor IDE Integration](#cursor-ide-integration)
+    - [Step 1: Install Cursor IDE](#step-1-install-cursor-ide)
+    - [Step 2: Setup MCP Configuration](#step-2-setup-mcp-configuration)
+    - [Step 3: Verify Installation](#step-3-verify-installation)
+  - [Claude Desktop Integration](#claude-desktop-integration)
+    - [Step 1: Locate Configuration File](#step-1-locate-configuration-file)
+    - [Step 2: Update Configuration](#step-2-update-configuration)
+    - [Step 3: Restart Claude Desktop](#step-3-restart-claude-desktop)
+- [API Keys and Tokens Setup](#api-keys-and-tokens-setup)
+  - [GitHub Token (Required for Chaining MCP)](#github-token-required-for-chaining-mcp)
+  - [Google API Keys (Required for Google Search MCP)](#google-api-keys-required-for-google-search-mcp)
+- [Environment Variables](#environment-variables)
+  - [Global Environment Variables](#global-environment-variables)
+  - [Server-Specific Variables](#server-specific-variables)
+- [Docker Deployment](#docker-deployment)
+  - [Prerequisites](#prerequisites)
+  - [Quick Start with Docker](#quick-start-with-docker)
+  - [Manual Docker Setup (Alternative)](#manual-docker-setup-alternative)
+  - [Environment File (.env)](#environment-file-env)
+- [Development Integration](#development-integration)
+  - [VS Code Integration](#vs-code-integration)
+  - [Custom Client Integration](#custom-client-integration)
+- [Workflow Integration](#workflow-integration)
+  - [Development Workflow](#development-workflow)
+  - [CI/CD Integration](#cicd-integration)
+- [Troubleshooting Integration Issues](#troubleshooting-integration-issues)
+  - [Common Issues](#common-issues)
+    - [Server Won't Start](#server-wont-start)
+    - [Tools Not Available](#tools-not-available)
+    - [API Key Issues](#api-key-issues)
+    - [Network Issues](#network-issues)
+  - [Debug Mode](#debug-mode)
+- [Advanced Integration](#advanced-integration)
+  - [Custom Server Development](#custom-server-development)
+  - [Performance Optimization](#performance-optimization)
+  - [Security Considerations](#security-considerations)
+- [Support](#support)
+
 ## Overview
 
 This guide provides detailed instructions for integrating the AZZAR MCP Server Suite into your development workflow and AI assistant setup.
@@ -166,13 +208,29 @@ echo 'export GOOGLE_SEARCH_ENGINE_ID="your-id-here"' >> ~/.bashrc
 - Docker Compose >= 2.0.0
 
 ### Quick Start with Docker
-1. Navigate to the mcp-ecosystem directory
-2. Copy and update the environment file:
+1. Run the setup script and select "Docker Compose":
+   ```bash
+   ./setup.sh
+   # Select option 3 (Docker Compose)
+   ```
+2. Edit the generated .env file with your API keys:
+   ```bash
+   nano .env
+   ```
+3. Start all services:
+   ```bash
+   cd config
+   docker-compose up -d
+   ```
+
+### Manual Docker Setup (Alternative)
+If you prefer manual setup:
+1. Copy and update the environment file:
    ```bash
    cp .env.example .env
    # Edit .env with your API keys and tokens
    ```
-3. Start all services:
+2. Start all services:
    ```bash
    cd config
    docker-compose up -d

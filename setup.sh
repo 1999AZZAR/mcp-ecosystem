@@ -17,6 +17,10 @@ print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
 
+print_question() {
+    echo -e "${BLUE}[QUESTION]${NC} $1"
+}
+
 print_success() {
     echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
@@ -27,6 +31,191 @@ print_warning() {
 
 print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Function to select MCP client
+select_mcp_client() {
+    echo
+    print_status "Select your MCP client:"
+    echo "1) Cursor IDE"
+    echo "2) Claude Desktop"
+    echo "3) Docker Compose"
+    echo "4) Skip configuration (manual setup)"
+    echo
+
+    while true; do
+        print_question "Enter your choice (1-4): "
+        read -r choice
+
+        case $choice in
+            1)
+                MCP_CLIENT="cursor"
+                print_success "Selected: Cursor IDE"
+                break
+                ;;
+            2)
+                MCP_CLIENT="claude"
+                print_success "Selected: Claude Desktop"
+                break
+                ;;
+            3)
+                MCP_CLIENT="docker"
+                print_success "Selected: Docker Compose"
+                break
+                ;;
+            4)
+                MCP_CLIENT="skip"
+                print_status "Skipping automatic configuration"
+                break
+                ;;
+            *)
+                print_warning "Invalid choice. Please enter 1, 2, 3, or 4."
+                ;;
+        esac
+    done
+    echo
+}
+
+# Function to configure MCP client automatically
+configure_mcp_client() {
+    local current_dir=$(pwd)
+
+    case $MCP_CLIENT in
+        cursor)
+            configure_cursor "$current_dir"
+            ;;
+        claude)
+            configure_claude "$current_dir"
+            ;;
+        docker)
+            configure_docker "$current_dir"
+            ;;
+        skip)
+            print_status "Manual configuration required. See README.md for instructions."
+            ;;
+    esac
+}
+
+# Function to configure Cursor IDE
+configure_cursor() {
+    local current_dir=$1
+    local config_file="$HOME/.cursor/mcp.json"
+
+    print_status "Configuring Cursor IDE..."
+
+    # Create config directory if it doesn't exist
+    mkdir -p "$HOME/.cursor"
+
+    # Copy and update config
+    cp "config/cursor-example.json" "$config_file.tmp"
+
+    # Replace placeholder paths with actual path
+    sed "s|/absolute/path/to/mcp-ecosystem|$current_dir|g" "$config_file.tmp" > "$config_file"
+
+    # Clean up temp file
+    rm "$config_file.tmp"
+
+    print_success "Cursor configuration created at: $config_file"
+    print_status "Next steps:"
+    echo "1. Set environment variables:"
+    echo "   export GITHUB_TOKEN='your-github-token'"
+    echo "   export GOOGLE_API_KEY='your-google-api-key'"
+    echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    echo "2. Restart Cursor IDE"
+}
+
+# Function to configure Claude Desktop
+configure_claude() {
+    local current_dir=$1
+
+    print_status "Configuring Claude Desktop..."
+
+    # Determine Claude config location based on OS
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        local config_file="$HOME/Library/Application Support/Claude/claude_desktop_config.json"
+        mkdir -p "$HOME/Library/Application Support/Claude"
+    elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "win32" ]]; then
+        # Windows
+        local config_file="$APPDATA/Claude/claude_desktop_config.json"
+        mkdir -p "$APPDATA/Claude"
+    else
+        # Linux
+        local config_file="$HOME/.config/Claude/claude_desktop_config.json"
+        mkdir -p "$HOME/.config/Claude"
+    fi
+
+    # Copy and update config
+    cp "config/claude-example.json" "$config_file.tmp"
+
+    # Replace placeholder paths with actual path
+    sed "s|/absolute/path/to/mcp-ecosystem|$current_dir|g" "$config_file.tmp" > "$config_file"
+
+    # Clean up temp file
+    rm "$config_file.tmp"
+
+    print_success "Claude configuration created at: $config_file"
+    print_status "Next steps:"
+    echo "1. Set environment variables:"
+    echo "   export GITHUB_TOKEN='your-github-token'"
+    echo "   export GOOGLE_API_KEY='your-google-api-key'"
+    echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    echo "2. Restart Claude Desktop"
+}
+
+# Function to configure Docker
+configure_docker() {
+    local current_dir=$1
+
+    print_status "Configuring Docker deployment..."
+
+    # Check if Docker is available
+    if ! command -v docker &> /dev/null; then
+        print_error "Docker is not installed. Please install Docker first."
+        print_status "Manual Docker setup instructions:"
+        echo "1. Install Docker and Docker Compose"
+        echo "2. Copy config/.env.example to .env and fill in your values"
+        echo "3. Run: cd config && docker-compose up -d"
+        return 1
+    fi
+
+    # Check if Docker Compose is available
+    if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
+        print_error "Docker Compose is not installed. Please install Docker Compose first."
+        return 1
+    fi
+
+    print_success "Docker and Docker Compose are available"
+
+    # Create .env file if it doesn't exist
+    if [ ! -f ".env" ]; then
+        cat > .env << 'EOF'
+# GitHub Integration (Required for Chaining MCP Server)
+GITHUB_TOKEN=your-github-token-here
+
+# Google Search API (Required for Google Search MCP Server)
+GOOGLE_API_KEY=your-google-api-key-here
+GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here
+
+# Optional: Data persistence paths
+DATA_PATH=./data
+WORKSPACE_PATH=./workspace
+
+# Optional: Server-specific settings
+SEQUENTIAL_THINKING_AVAILABLE=true
+AWESOME_COPILOT_ENABLED=true
+RELIABILITY_MONITORING_ENABLED=true
+EOF
+        print_success "Created .env file with template values"
+    fi
+
+    print_status "Next steps:"
+    echo "1. Edit the .env file with your actual API keys and tokens:"
+    echo "   nano .env"
+    echo "2. Start the Docker containers:"
+    echo "   cd config && docker-compose up -d"
+    echo "3. Check container status:"
+    echo "   docker-compose ps"
 }
 
 # Function to setup a single server
@@ -110,12 +299,15 @@ main() {
 
     print_success "Prerequisites check passed. Node.js version: $(node --version)"
 
+    # Interactive client selection
+    select_mcp_client
+
     # Define the servers to setup
     declare -a servers=(
         "chaining-mcp-server:https://github.com/1999AZZAR/chaining-mcp-server.git"
         "filesystem-mcp-server:https://github.com/1999AZZAR/filesystem-mcp-server.git"
         "google-search-mcp-server:https://github.com/1999AZZAR/Google-Search-MCP.git"
-        "Project-Guardian-mcp-server:https://github.com/1999AZZAR/project-guardian-mcp-server.git"
+        "Project-Guardian-mcp-server:https://github.com/1999AZZAR/Project-Guardian-mcp-server.git"
         "terminal-mcp-server:https://github.com/1999AZZAR/terminal-mcp-server.git"
         "wikipedia-mcp-server:https://github.com/1999AZZAR/wikipedia-mcp-server.git"
     )
@@ -142,13 +334,14 @@ main() {
         echo
         print_success "All MCP servers have been successfully set up!"
         echo
-        print_status "Next steps:"
-        echo "1. Configure your MCP client (Cursor IDE or Claude Desktop)"
-        echo "2. Copy the configuration from config/cursor-example.json or config/claude-example.json"
-        echo "3. Update the paths in the configuration to point to your local directories"
-        echo "4. Restart your MCP client"
+
+        # Automatic configuration
+        configure_mcp_client
+
         echo
-        print_status "For detailed configuration instructions, see the README.md file"
+        print_success "🎉 Setup complete! Your MCP server ecosystem is ready to use."
+        echo
+        print_status "For more information, see the README.md and docs/integration.md files"
     else
         print_warning "Some servers failed to setup. Please check the errors above and try again."
         exit 1

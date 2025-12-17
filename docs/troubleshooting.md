@@ -1,5 +1,37 @@
 # Troubleshooting Guide
 
+## Table of Contents
+
+- [Setup Issues](#setup-issues)
+  - [Git Clone Failures](#git-clone-failures)
+  - [Node.js Version Issues](#nodejs-version-issues)
+  - [Permission Errors](#permission-errors)
+- [Build Issues](#build-issues)
+  - [Build Failures](#build-failures)
+  - [Missing Build Tools](#missing-build-tools)
+- [Configuration Issues](#configuration-issues)
+  - [MCP Client Configuration](#mcp-client-configuration)
+  - [Environment Variables](#environment-variables)
+- [Runtime Issues](#runtime-issues)
+  - [Server Won't Start](#server-wont-start)
+  - [Tool Calls Fail](#tool-calls-fail)
+  - [Performance Issues](#performance-issues)
+- [Network Issues](#network-issues)
+  - [External API Access](#external-api-access)
+  - [SSH Connection Issues (Terminal MCP)](#ssh-connection-issues-terminal-mcp)
+- [Database Issues (Project Guardian)](#database-issues-project-guardian)
+  - [Database Corruption](#database-corruption)
+  - [Permission Issues](#permission-issues)
+- [Update Issues](#update-issues)
+  - [Update Script Failures](#update-script-failures)
+- [Development Issues](#development-issues)
+  - [Testing Failures](#testing-failures)
+  - [Linting Errors](#linting-errors)
+- [Getting Help](#getting-help)
+  - [Debug Information](#debug-information)
+  - [Community Support](#community-support)
+  - [Emergency Recovery](#emergency-recovery)
+
 This guide helps you resolve common issues when setting up and using the AZZAR MCP Server Suite.
 
 ## Setup Issues

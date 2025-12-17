@@ -1,5 +1,42 @@
 # AZZAR MCP Server Suite Architecture
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Core Principles](#core-principles)
+  - [1. Modularity](#1-modularity)
+  - [2. Interoperability](#2-interoperability)
+  - [3. Specialization](#3-specialization)
+- [Server Architecture](#server-architecture)
+  - [Chaining MCP Server](#chaining-mcp-server)
+  - [Filesystem MCP Server](#filesystem-mcp-server)
+  - [Google Search MCP Server](#google-search-mcp-server)
+  - [Project Guardian MCP Server](#project-guardian-mcp-server)
+  - [Terminal MCP Server](#terminal-mcp-server)
+  - [Wikipedia MCP Server](#wikipedia-mcp-server)
+- [Data Flow Architecture](#data-flow-architecture)
+  - [Client Interaction Layer](#client-interaction-layer)
+  - [Server Orchestration Layer](#server-orchestration-layer)
+- [Communication Patterns](#communication-patterns)
+  - [1. Direct Tool Calls](#1-direct-tool-calls)
+  - [2. Resource Access](#2-resource-access)
+  - [3. Workflow Orchestration](#3-workflow-orchestration)
+  - [4. Data Persistence](#4-data-persistence)
+- [Deployment Architecture](#deployment-architecture)
+  - [Development Environment](#development-environment)
+  - [Production Environment](#production-environment)
+- [Security Considerations](#security-considerations)
+  - [1. Access Control](#1-access-control)
+  - [2. Data Protection](#2-data-protection)
+  - [3. Network Security](#3-network-security)
+- [Performance Optimization](#performance-optimization)
+  - [1. Caching Strategies](#1-caching-strategies)
+  - [2. Resource Management](#2-resource-management)
+  - [3. Monitoring](#3-monitoring)
+- [Future Extensions](#future-extensions)
+  - [Potential New Servers](#potential-new-servers)
+  - [Enhanced Orchestration](#enhanced-orchestration)
+
 ## Overview
 
 The AZZAR MCP Server Suite is a collection of specialized Model Context Protocol (MCP) servers designed to work together to provide AI assistant capabilities. The architecture follows a modular, distributed approach where each server focuses on specific domains while maintaining interoperability through the MCP protocol.

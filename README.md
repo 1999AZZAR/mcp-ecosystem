@@ -2,6 +2,36 @@
 
 A collection of Model Context Protocol (MCP) servers developed by Azzar, designed to enhance AI assistant capabilities across development, research, project management, and system operations.
 
+## Table of Contents
+
+- [Overview](#overview)
+  - [Core Servers](#core-servers)
+- [Quick Start](#quick-start)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [MCP Client Options](#mcp-client-options)
+  - [MCP Client Configuration](#mcp-client-configuration)
+    - [For Cursor IDE](#for-cursor-ide)
+    - [For Claude Desktop](#for-claude-desktop)
+- [Server Details](#server-details)
+  - [Chaining MCP Server](#chaining-mcp-server)
+  - [Filesystem MCP Server](#filesystem-mcp-server)
+  - [Google Search MCP Server](#google-search-mcp-server)
+  - [Project Guardian MCP Server](#project-guardian-mcp-server)
+  - [Terminal MCP Server](#terminal-mcp-server)
+  - [Wikipedia MCP Server](#wikipedia-mcp-server)
+- [Development](#development)
+  - [Repository Structure](#repository-structure)
+  - [Individual Server Development](#individual-server-development)
+  - [Building All Servers](#building-all-servers)
+- [Contributing](#contributing)
+  - [For New Contributors](#for-new-contributors)
+  - [Development Guidelines](#development-guidelines)
+  - [Adding New Servers](#adding-new-servers)
+- [License](#license)
+- [Support](#support)
+- [Updates](#updates)
+
 ## Overview
 
 The AZZAR MCP Server Suite provides a collection of specialized MCP servers that work together to create an effective AI assistant toolkit. Each server focuses on specific domains while maintaining interoperability through the MCP protocol.
@@ -12,7 +42,7 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 | --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
 | [**Chaining MCP**](https://github.com/1999AZZAR/chaining-mcp-server)                 | Intelligent tool orchestration | Route optimization, sequential thinking, workflow orchestration |
 | [**Filesystem MCP**](https://github.com/1999AZZAR/filesystem-mcp-server)             | Advanced file operations       | File manipulation, directory operations, search capabilities    |
-| [**Google Search MCP**](https://github.com/1999AZZAR/google-search-mcp-server)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
+| [**Google Search MCP**](https://github.com/1999AZZAR/Google-Search-MCP)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
 | [**Project Guardian MCP**](https://github.com/1999AZZAR/Project-Guardian-mcp-server) | Project memory management      | Knowledge graphs, task tracking, database operations            |
 | [**Terminal MCP**](https://github.com/1999AZZAR/terminal-mcp-server)                 | System command execution       | Remote execution, session management, cross-platform support    |
 | [**Wikipedia MCP**](https://github.com/1999AZZAR/wikipedia-mcp-server)               | Knowledge base access          | Article search, content extraction, language support            |
@@ -24,6 +54,7 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 - Node.js >= 18.0.0
 - npm or yarn
 - Git
+- **For Docker option:** Docker and Docker Compose
 
 ### Installation
 
@@ -33,16 +64,39 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
    git clone https://github.com/1999AZZAR/mcp-ecosystem.git
    cd mcp-ecosystem
    ```
-2. **Run the setup script:**
+
+2. **Interactive Setup:**
+
+   The setup script will guide you through the installation:
 
    ```bash
    ./setup.sh
    ```
 
-   This will clone all individual MCP server repositories and install their dependencies.
-3. **Configure your MCP client:**
+   **Setup Process:**
+   - Checks prerequisites (Node.js, Git)
+   - Prompts for MCP client selection:
+     - **Cursor IDE** - Automatic configuration
+     - **Claude Desktop** - Automatic configuration
+     - **Docker Compose** - Container setup
+     - **Skip** - Manual setup
+   - Clones and builds all MCP servers
+   - Automatically configures your selected client
+   - Sets up environment variables and paths
+   **What happens automatically:**
+   - ✅ Clones all 6 MCP server repositories
+   - ✅ Installs dependencies and builds all servers
+   - ✅ **Interactively selects your MCP client**
+   - ✅ **Automatically creates configuration files**
+   - ✅ **Sets correct paths and environment variables**
 
-   Choose your preferred MCP client and follow the configuration instructions below.
+3. **MCP Client Options:**
+
+   Choose from:
+   - **Cursor IDE** - Creates `~/.cursor/mcp.json` automatically
+   - **Claude Desktop** - Sets up config in the correct OS-specific location
+   - **Docker Compose** - Prepares containerized deployment with `.env` file
+   - **Skip** - Manual configuration (see below)
 
    **Note:** Replace `/absolute/path/to/mcp-ecosystem` with the actual absolute path to your mcp-ecosystem directory.
 
@@ -168,7 +222,7 @@ Advanced file system operations server providing:
 
 ### Google Search MCP Server
 
-**Repository:** [google-search-mcp-server](https://github.com/1999AZZAR/google-search-mcp-server)
+**Repository:** [Google-Search-MCP](https://github.com/1999AZZAR/Google-Search-MCP)
 
 Web research and content analysis server offering:
 
