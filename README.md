@@ -42,10 +42,21 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 | --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
 | [**Chaining MCP**](https://github.com/1999AZZAR/chaining-mcp-server)                 | Intelligent tool orchestration | Route optimization, sequential thinking, workflow orchestration |
 | [**Filesystem MCP**](https://github.com/1999AZZAR/filesystem-mcp-server)             | Advanced file operations       | File manipulation, directory operations, search capabilities    |
-| [**Google Search MCP**](https://github.com/1999AZZAR/Google-Search-MCP)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
 | [**Project Guardian MCP**](https://github.com/1999AZZAR/Project-Guardian-mcp-server) | Project memory management      | Knowledge graphs, task tracking, database operations            |
 | [**Terminal MCP**](https://github.com/1999AZZAR/terminal-mcp-server)                 | System command execution       | Remote execution, session management, cross-platform support    |
+
+### Research Servers (Choose One Option)
+
+**Option 1: Individual Research Servers (6 total MCP servers)**
+| Server                                                                                  | Purpose                        | Key Features                                                    |
+| --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
+| [**Google Search MCP**](https://github.com/1999AZZAR/Google-Search-MCP)       | Web research and analysis      | Search, content extraction, fact checking, research assistance  |
 | [**Wikipedia MCP**](https://github.com/1999AZZAR/wikipedia-mcp-server)               | Knowledge base access          | Article search, content extraction, language support            |
+
+**Option 2: Enhanced Research Server (5 total MCP servers)**
+| Server                                                                                  | Purpose                        | Key Features                                                    |
+| --------------------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------------- |
+| [**Research MCP**](https://github.com/1999AZZAR/research-mcp-server)                  | Combined research platform     | Unified Google Search + Wikipedia with additional analysis tools |
 
 ## Quick Start
 
@@ -75,12 +86,15 @@ The AZZAR MCP Server Suite provides a collection of specialized MCP servers that
 
    **Setup Process:**
    - Checks prerequisites (Node.js, Git)
+   - **Research MCP Selection:** Choose between individual research servers or combined research server
+     - **Individual:** Google Search + Wikipedia servers (6 total MCP servers)
+     - **Combined:** Enhanced research server with unified functionality (5 total MCP servers)
    - Prompts for MCP client selection:
      - **Cursor IDE** - Automatic configuration
      - **Claude Desktop** - Automatic configuration
      - **Docker Compose** - Container setup
      - **Skip** - Manual setup
-   - Clones and builds all MCP servers
+   - Clones and builds selected MCP servers
    - Automatically configures your selected client
    - Sets up environment variables and paths
    **What happens automatically:**

@@ -13,14 +13,6 @@
       "command": "node",
       "args": ["/absolute/path/to/mcp-ecosystem/filesystem-mcp-server/dist/index.js"]
     },
-    "google-search": {
-      "command": "node",
-      "args": ["/absolute/path/to/mcp-ecosystem/google-search-mcp-server/dist/index.js"],
-      "env": {
-        "GOOGLE_API_KEY": "your-google-api-key-here",
-        "GOOGLE_SEARCH_ENGINE_ID": "your-search-engine-id-here"
-      }
-    },
     "project-guardian": {
       "command": "node",
       "args": ["/absolute/path/to/mcp-ecosystem/Project-Guardian-mcp-server/dist/index.js"]
@@ -28,10 +20,6 @@
     "terminal": {
       "command": "node",
       "args": ["/absolute/path/to/mcp-ecosystem/terminal-mcp-server/dist/index.js"]
-    },
-    "wikipedia": {
-      "command": "node",
-      "args": ["/absolute/path/to/mcp-ecosystem/wikipedia-mcp-server/dist/index.js"]
     }
   }
 }

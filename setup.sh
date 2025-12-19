@@ -33,6 +33,41 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# Function to select research MCP preference
+select_research_mcp() {
+    echo
+    print_status "Select your research MCP server configuration:"
+    echo "1) Individual servers (wikipedia-mcp-server + google-search-mcp-server)"
+    echo "   - Provides 6 total MCP servers"
+    echo "   - Separate Google Search and Wikipedia functionality"
+    echo "2) Enhanced research server (research-mcp-server)"
+    echo "   - Provides 5 total MCP servers"
+    echo "   - Combined Google Search and Wikipedia with additional tools"
+    echo
+
+    while true; do
+        print_question "Enter your choice (1-2): "
+        read -r choice
+
+        case $choice in
+            1)
+                RESEARCH_MCP="individual"
+                print_success "Selected: Individual research servers"
+                break
+                ;;
+            2)
+                RESEARCH_MCP="combined"
+                print_success "Selected: Enhanced research server"
+                break
+                ;;
+            *)
+                print_warning "Invalid choice. Please enter 1 or 2."
+                ;;
+        esac
+    done
+    echo
+}
+
 # Function to select MCP client
 select_mcp_client() {
     echo
@@ -106,8 +141,21 @@ configure_cursor() {
     # Create config directory if it doesn't exist
     mkdir -p "$HOME/.cursor"
 
-    # Copy and update config
+    # Start with base config
     cp "config/cursor-example.json" "$config_file.tmp"
+
+    # Add research servers based on user choice
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        # Append individual research servers config
+        sed '$ s/}$/,/' "$config_file.tmp" > "$config_file.tmp2"
+        cat "config/cursor-individual-research.json" | sed '1d;$d' >> "$config_file.tmp2"
+        mv "$config_file.tmp2" "$config_file.tmp"
+    else
+        # Append combined research server config
+        sed '$ s/}$/,/' "$config_file.tmp" > "$config_file.tmp2"
+        cat "config/cursor-combined-research.json" | sed '1d;$d' >> "$config_file.tmp2"
+        mv "$config_file.tmp2" "$config_file.tmp"
+    fi
 
     # Replace placeholder paths with actual path
     sed "s|/absolute/path/to/mcp-ecosystem|$current_dir|g" "$config_file.tmp" > "$config_file"
@@ -117,10 +165,17 @@ configure_cursor() {
 
     print_success "Cursor configuration created at: $config_file"
     print_status "Next steps:"
-    echo "1. Set environment variables:"
-    echo "   export GITHUB_TOKEN='your-github-token'"
-    echo "   export GOOGLE_API_KEY='your-google-api-key'"
-    echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        echo "1. Set environment variables:"
+        echo "   export GITHUB_TOKEN='your-github-token'"
+        echo "   export GOOGLE_API_KEY='your-google-api-key'"
+        echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    else
+        echo "1. Set environment variables:"
+        echo "   export GITHUB_TOKEN='your-github-token'"
+        echo "   export GOOGLE_API_KEY='your-google-api-key'"
+        echo "   export GOOGLE_CSE_ID='your-search-engine-id'"
+    fi
     echo "2. Restart Cursor IDE"
 }
 
@@ -145,8 +200,21 @@ configure_claude() {
         mkdir -p "$HOME/.config/Claude"
     fi
 
-    # Copy and update config
+    # Start with base config
     cp "config/claude-example.json" "$config_file.tmp"
+
+    # Add research servers based on user choice
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        # Append individual research servers config
+        sed '$ s/}$/,/' "$config_file.tmp" > "$config_file.tmp2"
+        cat "config/claude-individual-research.json" | sed '1d;$d' >> "$config_file.tmp2"
+        mv "$config_file.tmp2" "$config_file.tmp"
+    else
+        # Append combined research server config
+        sed '$ s/}$/,/' "$config_file.tmp" > "$config_file.tmp2"
+        cat "config/claude-combined-research.json" | sed '1d;$d' >> "$config_file.tmp2"
+        mv "$config_file.tmp2" "$config_file.tmp"
+    fi
 
     # Replace placeholder paths with actual path
     sed "s|/absolute/path/to/mcp-ecosystem|$current_dir|g" "$config_file.tmp" > "$config_file"
@@ -156,10 +224,17 @@ configure_claude() {
 
     print_success "Claude configuration created at: $config_file"
     print_status "Next steps:"
-    echo "1. Set environment variables:"
-    echo "   export GITHUB_TOKEN='your-github-token'"
-    echo "   export GOOGLE_API_KEY='your-google-api-key'"
-    echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        echo "1. Set environment variables:"
+        echo "   export GITHUB_TOKEN='your-github-token'"
+        echo "   export GOOGLE_API_KEY='your-google-api-key'"
+        echo "   export GOOGLE_SEARCH_ENGINE_ID='your-search-engine-id'"
+    else
+        echo "1. Set environment variables:"
+        echo "   export GITHUB_TOKEN='your-github-token'"
+        echo "   export GOOGLE_API_KEY='your-google-api-key'"
+        echo "   export GOOGLE_CSE_ID='your-search-engine-id'"
+    fi
     echo "2. Restart Claude Desktop"
 }
 
@@ -175,7 +250,11 @@ configure_docker() {
         print_status "Manual Docker setup instructions:"
         echo "1. Install Docker and Docker Compose"
         echo "2. Copy config/.env.example to .env and fill in your values"
-        echo "3. Run: cd config && docker-compose up -d"
+        if [ "$RESEARCH_MCP" = "individual" ]; then
+            echo "3. Run: cd config && docker-compose -f docker-compose.yml -f docker-compose-individual-research.yml up -d"
+        else
+            echo "3. Run: cd config && docker-compose -f docker-compose.yml -f docker-compose-combined-research.yml up -d"
+        fi
         return 1
     fi
 
@@ -193,7 +272,7 @@ configure_docker() {
 # GitHub Integration (Required for Chaining MCP Server)
 GITHUB_TOKEN=your-github-token-here
 
-# Google Search API (Required for Google Search MCP Server)
+# Google Search API (Required for research servers)
 GOOGLE_API_KEY=your-google-api-key-here
 GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here
 
@@ -213,7 +292,11 @@ EOF
     echo "1. Edit the .env file with your actual API keys and tokens:"
     echo "   nano .env"
     echo "2. Start the Docker containers:"
-    echo "   cd config && docker-compose up -d"
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        echo "   cd config && docker-compose -f docker-compose.yml -f docker-compose-individual-research.yml up -d"
+    else
+        echo "   cd config && docker-compose -f docker-compose.yml -f docker-compose-combined-research.yml up -d"
+    fi
     echo "3. Check container status:"
     echo "   docker-compose ps"
 }
@@ -299,18 +382,37 @@ main() {
 
     print_success "Prerequisites check passed. Node.js version: $(node --version)"
 
+    # Interactive research MCP selection
+    select_research_mcp
+
     # Interactive client selection
     select_mcp_client
 
-    # Define the servers to setup
-    declare -a servers=(
+    # Define the base servers
+    declare -a base_servers=(
         "chaining-mcp-server:https://github.com/1999AZZAR/chaining-mcp-server.git"
         "filesystem-mcp-server:https://github.com/1999AZZAR/filesystem-mcp-server.git"
-        "google-search-mcp-server:https://github.com/1999AZZAR/Google-Search-MCP.git"
         "Project-Guardian-mcp-server:https://github.com/1999AZZAR/Project-Guardian-mcp-server.git"
         "terminal-mcp-server:https://github.com/1999AZZAR/terminal-mcp-server.git"
-        "wikipedia-mcp-server:https://github.com/1999AZZAR/wikipedia-mcp-server.git"
     )
+
+    # Define research servers based on user choice
+    declare -a research_servers
+    if [ "$RESEARCH_MCP" = "individual" ]; then
+        research_servers=(
+            "google-search-mcp-server:https://github.com/1999AZZAR/Google-Search-MCP.git"
+            "wikipedia-mcp-server:https://github.com/1999AZZAR/wikipedia-mcp-server.git"
+        )
+        print_status "Using individual research servers: 6 total MCP servers"
+    else
+        research_servers=(
+            "research-mcp-server:https://github.com/1999AZZAR/research-mcp-server.git"
+        )
+        print_status "Using enhanced research server: 5 total MCP servers"
+    fi
+
+    # Combine base servers with research servers
+    declare -a servers=("${base_servers[@]}" "${research_servers[@]}")
 
     # Track success/failure
     local success_count=0
